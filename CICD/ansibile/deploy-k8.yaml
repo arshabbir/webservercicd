@@ -1,0 +1,10 @@
+- 
+  name: Deploy on k8 Master
+  hosts: k8node
+  tasks:
+    - name: Create Deployment on k8 master
+      command: kubectl apply -f /home/ubuntu/deployments/webservercicd/dep.yaml
+
+    - name: Create Service on k8 master
+      command: kubectl apply -f /home/ubuntu/deployments/webservercicd/service.yaml
+

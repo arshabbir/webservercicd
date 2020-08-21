@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    name: appDeployment
+  name: appdeployment
+spec:
+  replicas: 2
+  selector:
+   matchLabels:
+      name: app-pod
+  template:
+    metadata:
+      labels:
+        name: app-pod
+      name: app-pod
+    spec:
+      containers:
+        -
+          image: arshabbir/webserverimagecicd
+          name: webservercice
+          ports:
+            - containerPort: 8087
