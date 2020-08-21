@@ -1,9 +1,14 @@
 package main
 
-import "github.com/arshabbir/webservercicd/src/app"
+import (
+	"log"
+
+	"github.com/arshabbir/webservercicd/src/app"
+)
 
 func main() {
 
+	log.Println("CICD Webserve demo......")
 	app.StartApplication()
 	return
 
