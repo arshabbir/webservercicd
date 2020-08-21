@@ -1,6 +1,7 @@
 -
   hosts: localhost
   name: "Create and PUsh the docker image to docker hub"
+  user: root
   tasks:
     -
       command: "docker build .  -t webserverimagecicd"
