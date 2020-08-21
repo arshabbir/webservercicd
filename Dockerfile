@@ -14,4 +14,4 @@ RUN go build -o webservercicd
 EXPOSE 8080
 
 ENTRYPOINT ["./webservercicd"]
-~
+
