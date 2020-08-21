@@ -4,7 +4,7 @@
   name: "Create and PUsh the docker image to docker hub"
   tasks: 
     - 
-      command: "docker bukld . --tag webserverimage1"
+      command: "docker bukld .  webserverimage1"
       name: "Create docker image"
     - 
       command: "docker tag  webserverimage arshabbir/webserverimage"
