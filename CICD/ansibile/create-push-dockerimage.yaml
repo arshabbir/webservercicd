@@ -1,14 +1,24 @@
---- 
-- 
+-
   hosts: localhost
   name: "Create and PUsh the docker image to docker hub"
-  tasks: 
-    - 
-      command: "docker build .  webserverimagecicd"
+  tasks:
+    -
+      command: "docker build .  -t webserverimagecicd"
       name: "Create docker image"
-    - 
+      args:
+       chdir: /var/lib/jenkins/workspace/Go-webserver_dockerbuild
+
+    -
       command: "docker tag  webserverimagecicd arshabbir/webserverimagecicd"
       name: "Tag docker image"
-    - 
+    -
       command: "docker push  arshabbir/webserverimagecicd"
       name: "Push the docker image to docker hub"
+    -
+      command: "docker rmi -f  webserverimagecicd"
+      name: "Remote docker image"
+      ignore_errors: yes
+    -
+      command: "docker rmi -f  arshabbir/webserverimagecicd"
+      name: "Remove docker tagged  image"
+      ignore_errors: yes
