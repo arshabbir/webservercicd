@@ -1,14 +1,14 @@
+--- 
 - 
-  name: Create and PUsh the docker image to docker hub
   hosts: localhost
-  tasks:
-   
-   - name: Create docker image
-     command:  docker bukld . --tag webserverimage1
-
-   - name: Tag docker image 
-     command: docker tag  webserverimage arshabbir/webserverimage
-
-  -  name: Push the docker image to docker hub
-     command:  docker push  arshabbir/webserverimage
-
+  name: "Create and PUsh the docker image to docker hub"
+  tasks: 
+    - 
+      command: "docker bukld . --tag webserverimage1"
+      name: "Create docker image"
+    - 
+      command: "docker tag  webserverimage arshabbir/webserverimage"
+      name: "Tag docker image"
+    - 
+      command: "docker push  arshabbir/webserverimage"
+      name: "Push the docker image to docker hub"
