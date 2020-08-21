@@ -11,7 +11,7 @@ WORKDIR /build/src
 
 RUN go build -o webservercicd
 
-EXPOSE 8080
+EXPOSE 8087
 
 ENTRYPOINT ["./webservercicd"]
 
