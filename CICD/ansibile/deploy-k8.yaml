@@ -2,6 +2,11 @@
   name: Deploy on k8 Master
   hosts: k8node
   tasks:
+  - name: Copy k8files  on k8 Master
+      copy:
+       - src: ../Go-webserver_dockerbuild/CICD/k8files/*.yaml
+         dest: /home/ubuntu/deployments/webservercicd/
+
     - name: Create Deployment on k8 master
       command: kubectl apply -f /home/ubuntu/deployments/webservercicd/dep.yaml
 
