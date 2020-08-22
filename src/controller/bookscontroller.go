@@ -42,7 +42,7 @@ func (bc *bookController) Create(c *gin.Context) {
 		return
 	}
 
-	c.JSON(http.StatusInternalServerError, &utils.APIerror{Status: http.StatusOK, Msg: "Book Creation Successful"})
+	c.JSON(http.StatusInternalServerError, &utils.APIerror{Status: http.StatusOK, Msg: "Book Creation Successfull"})
 	return
 
 }
@@ -76,7 +76,7 @@ func (bc *bookController) Update(c *gin.Context) {
 		return
 	}
 
-	c.JSON(http.StatusInternalServerError, &utils.APIerror{Status: http.StatusOK, Msg: "Book Update Successful"})
+	c.JSON(http.StatusInternalServerError, &utils.APIerror{Status: http.StatusOK, Msg: "Book Update Successfull"})
 	return
 }
 
@@ -89,14 +89,14 @@ func (bc *bookController) Delete(c *gin.Context) {
 		c.JSON(http.StatusNotFound, &utils.APIerror{Status: http.StatusNotFound, Msg: "No book found"})
 		return
 	}
-	c.JSON(http.StatusOK, &utils.APIerror{Status: http.StatusNotFound, Msg: "Book deletion successful"})
+	c.JSON(http.StatusOK, &utils.APIerror{Status: http.StatusNotFound, Msg: "Book deletion successfull"})
 
 	return
 }
 
 func (bc *bookController) Ping(c *gin.Context) {
 
-	c.String(http.StatusOK, "pong")
+	c.String(http.StatusOK, "pongv2.0")
 
 	return
 }
