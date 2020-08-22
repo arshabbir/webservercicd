@@ -32,7 +32,9 @@ func StartApplication() {
 	c.PUT("/update", bController.Update)
 	c.DELETE("/delete/:id", bController.Delete)
 
-	c.Run(":8080")
+	c.GET("/ping", bController.Ping)
+
+	c.Run(port)
 
 	return
 }

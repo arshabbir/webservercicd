@@ -23,3 +23,5 @@
       command: "docker rmi -f  arshabbir/webserverimagecicd"
       name: "Remove docker tagged  image"
       ignore_errors: yes
+
+      

@@ -18,6 +18,7 @@ type BookController interface {
 	Read(*gin.Context)
 	Update(*gin.Context)
 	Delete(*gin.Context)
+	Ping(*gin.Context)
 }
 
 func NewBookController() BookController {
@@ -89,6 +90,13 @@ func (bc *bookController) Delete(c *gin.Context) {
 		return
 	}
 	c.JSON(http.StatusOK, &utils.APIerror{Status: http.StatusNotFound, Msg: "Book deletion successful"})
+
+	return
+}
+
+func (bc *bookController) Ping(c *gin.Context) {
+
+	c.String(http.StatusOK, "pong")
 
 	return
 }
