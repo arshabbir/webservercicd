@@ -7,7 +7,7 @@ metadata:
 spec:
  selector:
    name: app-pod
- type: LoadBalancer
+ type: NodePort
  ports:
   - port: 8087
     targetPort: 8087
