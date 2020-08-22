@@ -107,6 +107,6 @@ func (bc *bookController) Wish(c *gin.Context) {
 
 	log.Println("Wish API invoked")
 
-	c.File(".\\controller\\flowers.jpg")
+	c.File("./controller/flowers.jpg")
 	return
 }
