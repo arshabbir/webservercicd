@@ -8,7 +8,7 @@ import (
 
 func main() {
 
-	log.Println("CICD Webserver  demo.....")
+	log.Println("CICD Webserverdemo.....")
 	app.StartApplication()
 	return
 
