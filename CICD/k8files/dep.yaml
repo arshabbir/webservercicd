@@ -18,6 +18,7 @@ spec:
       containers:
         -
           image: arshabbir/webserverimagecicd
+          imagePullPolicy: Always
           name: webservercice
           ports:
             - containerPort: 8087
