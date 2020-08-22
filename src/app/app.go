@@ -36,9 +36,9 @@ func StartApplication() {
 
 	c.GET("/wish", bController.Wish)
 
-	//c.Run(port)
+	c.Run(port)
 
-	c.Run(":8080")
+	//c.Run(":8080")
 
 	return
 }
