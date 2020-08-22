@@ -6,7 +6,7 @@
      copy:
          src: "{{ item }}"
          dest: /home/ubuntu/deployments/webservercicd/
-      loop:
+     loop:
         - /var/lib/jenkins/workspace/Go-webserver_dockerbuild/CICD/k8files/
 
    - name: Create Deployment on k8 master
