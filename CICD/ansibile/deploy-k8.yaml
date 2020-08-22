@@ -12,6 +12,9 @@
    - name: Create Deployment on k8 master
      command: kubectl apply -f /home/ubuntu/deployments/webservercicd/dep.yaml
 
+   - name: Update rollout 
+     command: kubectl rollout restart deployment appdeployment
+
    - name: Create Service on k8 master
      command: kubectl apply -f /home/ubuntu/deployments/webservercicd/service.yaml
 
