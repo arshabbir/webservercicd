@@ -4,8 +4,10 @@
   tasks:
    - name: Copy k8files  on k8 Master
      copy:
-         src: ../Go-webserver_dockerbuild/CICD/k8files/*.yaml
+         src: "{{ item }}"
          dest: /home/ubuntu/deployments/webservercicd/
+      loop:
+        - /var/lib/jenkins/workspace/Go-webserver_dockerbuild/CICD/k8files/
 
    - name: Create Deployment on k8 master
      command: kubectl apply -f /home/ubuntu/deployments/webservercicd/dep.yaml
