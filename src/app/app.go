@@ -34,7 +34,11 @@ func StartApplication() {
 
 	c.GET("/ping", bController.Ping)
 
-	c.Run(port)
+	c.GET("/wish", bController.Wish)
+
+	//c.Run(port)
+
+	c.Run(":8080")
 
 	return
 }

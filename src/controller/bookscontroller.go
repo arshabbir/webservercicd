@@ -1,6 +1,7 @@
 package controller
 
 import (
+	"log"
 	"net/http"
 
 	"github.com/arshabbir/webservercicd/src/domain/books_dto"
@@ -19,6 +20,7 @@ type BookController interface {
 	Update(*gin.Context)
 	Delete(*gin.Context)
 	Ping(*gin.Context)
+	Wish(*gin.Context)
 }
 
 func NewBookController() BookController {
@@ -98,5 +100,13 @@ func (bc *bookController) Ping(c *gin.Context) {
 
 	c.String(http.StatusOK, "pongv2.0")
 
+	return
+}
+
+func (bc *bookController) Wish(c *gin.Context) {
+
+	log.Println("Wish API invoked")
+
+	c.File(".\\controller\\flowers.jpg")
 	return
 }
