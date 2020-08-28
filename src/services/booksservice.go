@@ -1,6 +1,8 @@
 package services
 
 import (
+	"log"
+
 	"github.com/arshabbir/webservercicd/src/domain/books_dao"
 	"github.com/arshabbir/webservercicd/src/domain/books_dto"
 	"github.com/arshabbir/webservercicd/src/utils"
@@ -20,6 +22,13 @@ type BookService interface {
 func NewBookService() BookService {
 
 	bdao := books_dao.NewDAO()
+
+	if bdao == nil {
+		log.Println("Error createing the DAO object")
+		return nil
+	}
+
+	log.Println("DAO obhect creation successful")
 
 	return &bookService{bdao: bdao}
 
