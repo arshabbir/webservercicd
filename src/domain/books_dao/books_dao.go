@@ -1,13 +1,18 @@
 package books_dao
 
 import (
-	"github.com/arshabbir/webservercicd/src/client"
+	"fmt"
+	"log"
+	"os"
+
 	"github.com/arshabbir/webservercicd/src/domain/books_dto"
 	"github.com/arshabbir/webservercicd/src/utils"
+	"github.com/gocql/gocql"
 )
 
-type bookdDao struct {
-	dbClient client.DBClient
+type bookDao struct {
+	cluster *gocql.ClusterConfig
+	session *gocql.Session
 }
 
 type BooksDao interface {
@@ -19,25 +24,68 @@ type BooksDao interface {
 
 func NewDAO() BooksDao {
 
-	dbClient := client.NewDBClient()
+	//Get the Environment variable "CASSANDRACLUSTER"
 
-	return &bookdDao{dbClient: dbClient}
+	clusterIP := os.Getenv("CLUSTERIP")
+
+	log.Println("ClusterIP environment  : ", clusterIP)
+
+	cluster := gocql.NewCluster(clusterIP)
+	cluster.Keyspace = "bookstore"
+	cluster.Consistency = gocql.Quorum
+
+	session, err := cluster.CreateSession()
+
+	if err != nil {
+		log.Println("Cassandra Session Creation Error..", err.Error())
+		return nil
+	}
+
+	//defer session.Close()
+	return &bookDao{cluster: cluster, session: session}
+
 }
 
-func (bd *bookdDao) Create(b books_dto.Book) *utils.APIerror {
+func (bd *bookDao) Create(b books_dto.Book) *utils.APIerror {
 
-	return bd.dbClient.Create(b)
+	log.Println("Creating the book...")
+
+	/*
+				Id          string `json:"id"`
+			Name        string `json:"name"`
+			Author      string `json:"author"`
+			Publication string `json:"publication"`
+			Pages       int    `json:"pages"`
+		}
+
+	*/
+
+	insertQuery := fmt.Sprintf("INSERT INTO books(id, name, author, publication, pages) VALUES(?, ?, ?, ?,?);")
+
+	err := bd.session.Query(insertQuery, b.Id, b.Name, b.Author, b.Publication, b.Pages).Consistency(gocql.Quorum).Exec()
+
+	if err != nil {
+		log.Println("Errror in insertion")
+		return &utils.APIerror{Status: 500, Msg: "Error in Insertion"}
+	}
+	return nil
 }
 
-func (bd *bookdDao) Read(id string) ([]books_dto.Book, *utils.APIerror) {
-	return bd.dbClient.Read(id)
+func (bd *bookDao) Read(id string) ([]books_dto.Book, *utils.APIerror) {
+	log.Println("Reading the book...")
+
+	return nil, nil
 }
 
-func (bd *bookdDao) Update(book books_dto.Book) *utils.APIerror {
+func (bd *bookDao) Update(book books_dto.Book) *utils.APIerror {
 
-	return bd.dbClient.Update(book)
+	log.Println("Updating the book...")
+
+	return nil
 }
 
-func (bd *bookdDao) Delete(id string) *utils.APIerror {
-	return bd.dbClient.Delete(id)
+func (bd *bookDao) Delete(id string) *utils.APIerror {
+	log.Println("Deleting the book...")
+
+	return nil
 }

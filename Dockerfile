@@ -1,6 +1,7 @@
 FROM golang
 
 ENV PORT=":8087"
+ENV CLUSTERIP="127.0.0.1"
 ENV VERSION="1.0.1"
 
 RUN mkdir /build
