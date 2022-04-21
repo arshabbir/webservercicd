@@ -1,4 +1,6 @@
-FROM golang
+FROM golang:bullseye
+
+ENV GO111MODULE=on
 
 ENV PORT=":8087"
 ENV CLUSTERIP="127.0.0.1"
