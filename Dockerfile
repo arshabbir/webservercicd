@@ -12,6 +12,8 @@ COPY . /build
 
 WORKDIR /build/src
 
+RUN go mod tidy
+
 RUN go build -o webservercicd
 
 EXPOSE 8087
